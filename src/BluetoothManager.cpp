@@ -9,9 +9,10 @@ void BluetoothManager::initialize() {
 
 void BluetoothManager::handle_bluetooth() {
     if (softwareSerial->available()) {
-        Serial.write(softwareSerial->read());
+        String command = softwareSerial->readString();
+        Serial.println(command);
     }
     if (Serial.available()) {
-        softwareSerial->write(Serial.read());
+        softwareSerial->println(Serial.readString());
     }
 }
