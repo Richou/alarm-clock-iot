@@ -2,7 +2,7 @@
 #include "BluetoothManager.h"
 
 void BluetoothManager::initialize() {
-    softwareSerial = new SoftwareSerial(RX_PIN, TX_PIN);
+    softwareSerial = new SoftwareSerial(TX_PIN, RX_PIN);
     softwareSerial->begin(9600);
     Serial.begin(9600);
 }

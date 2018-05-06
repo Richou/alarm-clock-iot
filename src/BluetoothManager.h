@@ -1,7 +1,7 @@
 #include <SoftwareSerial.h>
 
-#define RX_PIN 10
-#define TX_PIN 11
+#define RX_PIN 11
+#define TX_PIN 10
 
 class BluetoothManager {
     private:

@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <Timer.h>
 
 class ClockProcess {
@@ -5,4 +6,7 @@ class ClockProcess {
         Timer* timer;
     public:
         void initialize();
+        void process();
+        static void displayHour();
+        static void blinkSecond();
 };
