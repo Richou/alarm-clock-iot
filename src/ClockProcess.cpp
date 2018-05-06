@@ -1,28 +1,37 @@
 #include "ClockProcess.h"
 #include <Time.h>
 
-int state = LOW;
-
-void ClockProcess::displayHour() {
-    Serial.print(hour());
-    Serial.print(":");
-    Serial.println(minute());
+void ClockProcess::_blinkSecond() {
+    digitalWrite(2, _state);
+    _state = (_state == LOW) ? HIGH : LOW;
 }
 
-void ClockProcess::blinkSecond() {
-    digitalWrite(2, state);
-    if (state == LOW) state = HIGH;
-    else state = LOW;  
+void ClockProcess::_displayClock() {
+    _printDigit(hour());
+    Serial.print(":");
+    _printDigit(minute());
+    Serial.println();
+}
+
+void ClockProcess::_printDigit(int digit) {
+    if (digit < 10) Serial.print("0");
+    Serial.print(digit);
 }
 
 void ClockProcess::initialize() {
     Serial.println("Initialize ClockProcess");
     pinMode(2, OUTPUT);
-    timer = new Timer();
-    timer->every(60000, ClockProcess::displayHour);
-    timer->every(500, ClockProcess::blinkSecond);
 }
 
 void ClockProcess::process() {
-    timer->update();
+    long currentMillis = millis();
+    if (currentMillis - _previousTimeForBlink >= _blinkInterval) {
+        _previousTimeForBlink = currentMillis;
+        _blinkSecond();
+    }
+
+    if (currentMillis - _previousTimeForClock >= _clockInverval) {
+        _previousTimeForClock = currentMillis;
+        _displayClock();
+    }
 }
