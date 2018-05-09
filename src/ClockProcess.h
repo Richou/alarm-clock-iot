@@ -1,3 +1,6 @@
+#ifndef CLOCK_PROCESS_H
+#define CLOCL_PROCESS_H
+
 #include <Arduino.h>
 
 class ClockProcess {
@@ -14,3 +17,5 @@ class ClockProcess {
         void initialize();
         void process();
 };
+
+#endif
