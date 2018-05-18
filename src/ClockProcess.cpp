@@ -2,7 +2,7 @@
 #include <Time.h>
 
 void ClockProcess::_blinkSecond() {
-    digitalWrite(2, _state);
+    digitalWrite(LED_SECOND_PINOUT, _state);
     _state = (_state == LOW) ? HIGH : LOW;
 }
 
@@ -20,7 +20,7 @@ void ClockProcess::_printDigit(int digit) {
 
 void ClockProcess::initialize() {
     Serial.println("Initialize ClockProcess");
-    pinMode(2, OUTPUT);
+    pinMode(LED_SECOND_PINOUT, OUTPUT);
 }
 
 void ClockProcess::process() {

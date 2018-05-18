@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
+#define LED_SECOND_PINOUT 2
+
 class ClockProcess {
     private:
         int _state = LOW;
