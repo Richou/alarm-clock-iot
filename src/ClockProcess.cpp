@@ -1,7 +1,7 @@
 #include "ClockProcess.h"
 #include <Time.h>
 
-void ClockProcess::_blinkSecond() {
+void ClockProcess::_blinkLedSecond() {
     digitalWrite(LED_SECOND_PINOUT, _state);
     _state = (_state == LOW) ? HIGH : LOW;
 }
@@ -24,14 +24,22 @@ void ClockProcess::initialize() {
 }
 
 void ClockProcess::process() {
+    if (_debugFlag == 0) {
+        Serial.println("Starting Clock");
+        _debugFlag = 1;
+    }
     long currentMillis = millis();
     if (currentMillis - _previousTimeForBlink >= _blinkInterval) {
         _previousTimeForBlink = currentMillis;
-        _blinkSecond();
+        _blinkLedSecond();
     }
 
     if (currentMillis - _previousTimeForClock >= _clockInverval) {
         _previousTimeForClock = currentMillis;
         _displayClock();
     }
+}
+
+void ClockProcess::setDateTime() {
+    setTime(18, 48, 0, 20, 5, 2018);
 }

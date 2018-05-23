@@ -7,6 +7,7 @@ void BluetoothManager::initialize() {
     Serial.begin(9600);
 
     commandParser = new CommandParser();
+    attachSubject(commandParser);
 }
 
 void BluetoothManager::handle_bluetooth() {
@@ -14,4 +15,8 @@ void BluetoothManager::handle_bluetooth() {
         String command = softwareSerial->readString();
         commandParser->parseCommand(command);
     }
+}
+
+void BluetoothManager::onReceivedDataFromSubject(const String command) {
+    Serial.print("Value is "); Serial.println(command);
 }
