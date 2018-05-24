@@ -40,6 +40,6 @@ void ClockProcess::process() {
     }
 }
 
-void ClockProcess::setDateTime() {
-    setTime(18, 48, 0, 20, 5, 2018);
+void ClockProcess::setDateTime(int year, int month, int day, int hours, int minutes) {
+    setTime(hours, minutes, 0, day, month, year);
 }

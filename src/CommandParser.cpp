@@ -11,7 +11,13 @@ void CommandParser::parseCommand(String command) {
     if (command.startsWith(set_nap_cmd)) {
         Serial.print("Setting nap of -> ");
         String nap_time = extractValueFromCommand(command, set_nap_cmd);
-        Serial.println(nap_time);
+        uint32_t factor = 1;
+        if (nap_time.endsWith("m")) factor = 60;
+        if (nap_time.endsWith("h")) factor = 60 * 60;
+        nap_time.remove(nap_time.length() - 1);
+        uint32_t nap_time_in_millis = nap_time.toInt() * factor * 1000;
+        Serial.println(nap_time_in_millis);
+        mObserver->onReceivedSetNapCommand(nap_time_in_millis);
     }
     if (command.startsWith(set_alarm_cmd)) {
         Serial.print("Setting Alarm for -> ");
@@ -26,7 +32,7 @@ String CommandParser::extractValueFromCommand(String received, String command) {
 }
 
 void CommandParser::registerObserver(CommandObserver* obs) {
-    mObserver = obs; //we will only allow one observer
+    mObserver = obs;
 }
 
 void CommandParser::unregisterObserver() {
