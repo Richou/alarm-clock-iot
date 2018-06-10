@@ -26,7 +26,6 @@ void CommandParser::parseCommand(String command) {
         String new_alarm = extractValueFromCommand(command, set_alarm_cmd);
         Serial.println(new_alarm);
     }
-    _notifyObserver(command);
 }
 
 String CommandParser::extractValueFromCommand(String received, String command) {
@@ -39,10 +38,4 @@ void CommandParser::registerObserver(CommandObserver* obs) {
 
 void CommandParser::unregisterObserver() {
     mObserver = nullptr;
-}
-
-void CommandParser::_notifyObserver(String command) {
-    if (mObserver != nullptr) {
-        mObserver->onReceivedDataFromSubject(command); 
-    }
 }

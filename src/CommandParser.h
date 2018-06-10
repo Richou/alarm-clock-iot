@@ -17,7 +17,6 @@ class CommandParser {
 
         String extractValueFromCommand(String received, String command);
         CommandObserver* mObserver;
-        void _notifyObserver(String command);
     public:
         void parseCommand(String command);
         void registerObserver(CommandObserver*); 

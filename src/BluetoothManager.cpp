@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "BluetoothManager.h"
+#include "AlarmObserver.h"
 
 BluetoothManager::~BluetoothManager() {
     commandParser->unregisterObserver();
@@ -22,16 +23,22 @@ void BluetoothManager::handle_bluetooth() {
     }
 }
 
-void BluetoothManager::onReceivedDataFromSubject(const String command) {
-    Serial.print("Value is "); Serial.println(command);
-}
-
 void BluetoothManager::onReceivedSetDatetimeCommand(int year, int month, int day, int hours, int minutes) {
-
+    if (mObserver != nullptr) {
+        mObserver->onSetDatetime(year, month, day, hours, minutes);
+    }
 }
 
 void BluetoothManager::onReceivedSetNapCommand(uint32_t durationInMillis) {
     Serial.print("Setting napTime for ");
     Serial.print(durationInMillis);
     Serial.println(" ms");
+}
+
+void BluetoothManager::registerObserver(AlarmObserver* obs) {
+    mObserver = obs;
+}
+
+void BluetoothManager::unregisterObserver() {
+    mObserver = nullptr;
 }
