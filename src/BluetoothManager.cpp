@@ -23,7 +23,7 @@ void BluetoothManager::handle_bluetooth() {
     }
 }
 
-void BluetoothManager::onReceivedSetDatetimeCommand(int year, int month, int day, int hours, int minutes) {
+void BluetoothManager::onReceivedSetDatetimeCommand(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes) {
     if (mObserver != nullptr) {
         mObserver->onSetDatetime(year, month, day, hours, minutes);
     }

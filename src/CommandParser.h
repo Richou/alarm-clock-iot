@@ -7,6 +7,7 @@ class CommandObserver;
 
 class CommandParser {
     private:
+        static constexpr const char* DATE_TIME_PATTERN = "%d-%d-%dT%d:%dZ";
         // Set DateTime pattern : set-datetime|yyyy-MM-ddThh:mmZ
         String set_clock_cmd = "set-datetime|";
         // Set Alarm pattern : set-alarm|m,t,w,t,f,s,s|hh:mm

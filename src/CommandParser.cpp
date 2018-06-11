@@ -9,7 +9,7 @@ void CommandParser::parseCommand(String command) {
         char new_clock_p[new_clock.length()];
         new_clock.toCharArray(new_clock_p, new_clock.length());
         int year_ac, month_ac, day_ac, minutes_ac, hours_ac;
-        sscanf(new_clock_p, "%d/%d/%dT%d:%dZ", &year_ac, &month_ac, &day_ac, &hours_ac, &minutes_ac);
+        sscanf(new_clock_p, DATE_TIME_PATTERN, &year_ac, &month_ac, &day_ac, &hours_ac, &minutes_ac);
         mObserver->onReceivedSetDatetimeCommand(year_ac, month_ac, day_ac, hours_ac, minutes_ac);
     }
     if (command.startsWith(set_nap_cmd)) {

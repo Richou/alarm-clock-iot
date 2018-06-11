@@ -12,7 +12,7 @@ class AlarmClock : public AlarmObserver {
     public:
         void initialize();
         void handle_alarm_clock();
-        void onSetDatetime(int year, int month, int day, int hours, int minutes) override;
+        void onSetDatetime(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes) override;
 };
 
 #endif

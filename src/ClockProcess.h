@@ -22,7 +22,7 @@ class ClockProcess {
     public:
         void initialize();
         void process();
-        void setDateTime(int year, int month, int day, int hours, int minutes);
+        void setDateTime(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes);
 };
 
 #endif
