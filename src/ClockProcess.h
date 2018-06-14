@@ -3,22 +3,23 @@
 
 #include <Arduino.h>
 #include "AlarmState.h"
+#include "SevenSegmentsDisplay.h"
 
-#define LED_SECOND_PINOUT 2
+#define LED_SECOND_PINOUT 5
 
 class ClockProcess {
     private:
         AlarmState state = AlarmState::INIT;
+        SevenSegmentsDisplay sevenSegmentsDisplay;
         int _state = HIGH;
         int _debugFlag = 0;
         long _previousTimeForBlink = 0;
-        long _previousTimeForClock = 0;
         long _blinkInterval = 500;
         long _datetimeNotSetBlink = 100;
-        long _clockInverval = 60000;
         void _blinkLedSecond();
-        void _displayClock();
         void _printDigit(int digit);
+        void _sendClockToDisplay();
+        long _computeSecondBlinkInterval();
     public:
         void initialize();
         void process();
