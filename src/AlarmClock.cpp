@@ -5,21 +5,19 @@ void AlarmClock::initialize() {
     bluetoothManager = new BluetoothManager();
     attachSubject(bluetoothManager);
     bluetoothManager->initialize();
-    clockProcess = new ClockProcess();
-    clockProcess->initialize();
-    Serial.begin(9600);
-    Serial.println("Begining AlarmClock");
+    clockProcess.initialize();
 }
 
 void AlarmClock::handle_alarm_clock() {
     bluetoothManager->handle_bluetooth();
-    clockProcess->process();
+    clockProcess.process();
+    alarmProcess.handle_alarm();
 }
 
 void AlarmClock::onSetDatetime(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds) {
-    Serial.print("Setting time -> ");
-    Serial.print(hours);
-    Serial.print(":");
-    Serial.println(minutes);
-    clockProcess->setDateTime(year, month, day, hours, minutes, seconds);
+    clockProcess.setDateTime(year, month, day, hours, minutes, seconds);
+}
+
+void AlarmClock::onSetNapDuration(uint32_t durationInMillis) {
+    alarmProcess.setNapModeWithDurationInMillis(durationInMillis);
 }

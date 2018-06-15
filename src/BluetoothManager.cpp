@@ -30,9 +30,9 @@ void BluetoothManager::onReceivedSetDatetimeCommand(uint8_t year, uint8_t month,
 }
 
 void BluetoothManager::onReceivedSetNapCommand(uint32_t durationInMillis) {
-    Serial.print("Setting napTime for ");
-    Serial.print(durationInMillis);
-    Serial.println(" ms");
+    if (mObserver != nullptr) {
+        mObserver->onSetNapDuration(durationInMillis);
+    }
 }
 
 void BluetoothManager::registerObserver(AlarmObserver* obs) {

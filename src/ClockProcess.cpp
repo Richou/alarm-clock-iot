@@ -4,6 +4,7 @@
 void ClockProcess::_blinkLedSecond() {
     digitalWrite(LED_SECOND_PINOUT, _state);
     _state = (_state == LOW) ? HIGH : LOW;
+    //int dayOfWeek = weekday(now());
 }
 
 void ClockProcess::_printDigit(int digit) {
