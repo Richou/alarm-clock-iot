@@ -16,10 +16,10 @@ void AlarmClock::handle_alarm_clock() {
     clockProcess->process();
 }
 
-void AlarmClock::onSetDatetime(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes) {
+void AlarmClock::onSetDatetime(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds) {
     Serial.print("Setting time -> ");
     Serial.print(hours);
     Serial.print(":");
     Serial.println(minutes);
-    clockProcess->setDateTime(year, month, day, hours, minutes);
+    clockProcess->setDateTime(year, month, day, hours, minutes, seconds);
 }

@@ -8,9 +8,9 @@ void CommandParser::parseCommand(String command) {
         String new_clock = extractValueFromCommand(command, set_clock_cmd);
         char new_clock_p[new_clock.length()];
         new_clock.toCharArray(new_clock_p, new_clock.length());
-        int year_ac, month_ac, day_ac, minutes_ac, hours_ac;
-        sscanf(new_clock_p, DATE_TIME_PATTERN, &year_ac, &month_ac, &day_ac, &hours_ac, &minutes_ac);
-        mObserver->onReceivedSetDatetimeCommand(year_ac, month_ac, day_ac, hours_ac, minutes_ac);
+        int year_ac, month_ac, day_ac, minutes_ac, hours_ac, seconds_ac;
+        sscanf(new_clock_p, DATE_TIME_PATTERN, &year_ac, &month_ac, &day_ac, &hours_ac, &minutes_ac, &seconds_ac);
+        mObserver->onReceivedSetDatetimeCommand(year_ac, month_ac, day_ac, hours_ac, minutes_ac, seconds_ac);
     }
     if (command.startsWith(set_nap_cmd)) {
         String nap_time = extractValueFromCommand(command, set_nap_cmd);
