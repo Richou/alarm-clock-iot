@@ -6,6 +6,7 @@ void AlarmClock::initialize() {
     attachSubject(bluetoothManager);
     bluetoothManager->initialize();
     clockProcess.initialize();
+    alarmProcess.initialize();
 }
 
 void AlarmClock::handle_alarm_clock() {

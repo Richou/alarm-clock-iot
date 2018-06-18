@@ -5,7 +5,9 @@ enum class AlarmState {
     INIT,
     OFF,
     NAP,
-    ALARM
+    ALARM,
+    SNOOZE,
+    BEEPING
 };
 
 #endif

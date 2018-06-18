@@ -37,4 +37,5 @@ void SevenSegmentsDisplay::_send_data(short data) {
     digitalWrite(2, LOW);
     shiftOut(4, 3,MSBFIRST, data);
     digitalWrite(2, HIGH);
+    delay(5);
 }
