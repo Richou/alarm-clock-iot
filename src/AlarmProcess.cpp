@@ -14,6 +14,10 @@ void AlarmProcess::setSnoozeDurationInMillis(uint32_t snoozeDurationInMillis) {
 void AlarmProcess::initialize() {
     pinMode(ALARM_PINOUT, OUTPUT);
     pinMode(ALARM_STOP_INPUT, INPUT);
+    Wire.begin();
+    sensor.init();
+    sensor.setTimeout(0);
+    sensor.setMeasurementTimingBudget(20000);
 }
 
 void AlarmProcess::handle_alarm() {
@@ -50,9 +54,5 @@ bool AlarmProcess::_snoozeTimeIsOver() {
 }
 
 void AlarmProcess::_setup_laser_sensor() {
-    Wire.begin();
-    sensor.init();
-    sensor.setTimeout(0);
-    sensor.setMeasurementTimingBudget(20000);
     sensor.startContinuous();
 }

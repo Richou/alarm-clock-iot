@@ -20,7 +20,7 @@ class BluetoothManager : public CommandObserver {
         ~BluetoothManager();
         void initialize();
         void handle_bluetooth();
-        void onReceivedSetDatetimeCommand(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds) override;
+        void onReceivedSetDatetimeCommand(uint16_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds) override;
         void onReceivedSetNapCommand(uint32_t durationInMillis) override;
 
         void registerObserver(AlarmObserver*); 

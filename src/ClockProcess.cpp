@@ -4,7 +4,7 @@
 void ClockProcess::_blinkLedSecond() {
     digitalWrite(LED_SECOND_PINOUT, _state);
     _state = (_state == LOW) ? HIGH : LOW;
-    //int dayOfWeek = weekday(now());
+    // uint8_t dayOfTheWeek = rtc.now().dayOfTheWeek();
 }
 
 void ClockProcess::_printDigit(int digit) {
@@ -16,10 +16,12 @@ void ClockProcess::initialize() {
     Serial.println("Initialize ClockProcess");
     pinMode(LED_SECOND_PINOUT, OUTPUT);
     sevenSegmentsDisplay.initialize();
+    rtc.begin();
 }
 
 void ClockProcess::_sendClockToDisplay() {
-    int hourminutes = hour() * 100 + minute();
+    DateTime current = rtc.now();
+    int hourminutes = current.hour() * 100 + current.minute();
     sevenSegmentsDisplay.displayToSevenSegs(hourminutes);
 }
 
@@ -39,11 +41,13 @@ void ClockProcess::process() {
 }
 
 long ClockProcess::_computeSecondBlinkInterval() {
-    timeStatus_t currentTimeStatus = timeStatus();
-    if (currentTimeStatus == timeStatus_t::timeSet) return _blinkInterval;
-    return _datetimeNotSetBlink;
+    if (this->_is_time_set || rtc.now().year() >= 2018) {
+        this->_is_time_set = true;
+        return _blinkInterval;
+    }
+    return this->_datetimeNotSetBlink;
 }
 
-void ClockProcess::setDateTime(uint8_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds) {
-    setTime(hours, minutes, seconds, day, month, year);
+void ClockProcess::setDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds) {
+    rtc.adjust(DateTime(year, month, day, hours, minutes, seconds));
 }
