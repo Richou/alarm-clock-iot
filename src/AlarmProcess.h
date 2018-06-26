@@ -25,6 +25,7 @@ class AlarmProcess {
         void handle_alarm();
         void setNapModeWithDurationInMillis(uint32_t durationInMillis);
         void setSnoozeDurationInMillis(uint32_t snoozeDurationInMillis);
+        void setAlarmClock();
 };
 
 #endif

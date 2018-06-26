@@ -14,7 +14,6 @@ class ClockProcess {
         SevenSegmentsDisplay sevenSegmentsDisplay;
         RTC_DS1307 rtc;
         int _state = HIGH;
-        int _debugFlag = 0;
         bool _is_time_set = false;
         long _previousTimeForBlink = 0;
         long _blinkInterval = 500;

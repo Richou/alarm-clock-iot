@@ -35,6 +35,12 @@ void BluetoothManager::onReceivedSetNapCommand(uint32_t durationInMillis) {
     }
 }
 
+void BluetoothManager::onReceivedSetSnoozeCommand(uint32_t durationInMillis) {
+    if (mObserver != nullptr) {
+        mObserver->onSetSnoozeDuration(durationInMillis);
+    }
+}
+
 void BluetoothManager::registerObserver(AlarmObserver* obs) {
     mObserver = obs;
 }

@@ -11,6 +11,10 @@ void AlarmProcess::setSnoozeDurationInMillis(uint32_t snoozeDurationInMillis) {
     this->snoozeDurationInMillis = snoozeDurationInMillis; 
 }
 
+void AlarmProcess::setAlarmClock() {
+    
+}
+
 void AlarmProcess::initialize() {
     pinMode(ALARM_PINOUT, OUTPUT);
     pinMode(ALARM_STOP_INPUT, INPUT);

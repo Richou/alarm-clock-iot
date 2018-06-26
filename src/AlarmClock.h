@@ -16,6 +16,7 @@ class AlarmClock : public AlarmObserver {
         void handle_alarm_clock();
         void onSetDatetime(uint16_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds) override;
         void onSetNapDuration(uint32_t duration) override;
+        void onSetSnoozeDuration(uint32_t durationInMillis) override;
 };
 
 #endif

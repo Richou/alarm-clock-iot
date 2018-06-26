@@ -15,18 +15,25 @@ void CommandParser::parseCommand(String command) {
     }
     if (command.startsWith(set_nap_cmd)) {
         String nap_time = extractValueFromCommand(command, set_nap_cmd);
-        uint32_t factor = 1;
-        if (nap_time.endsWith("m")) factor = 60;
-        if (nap_time.endsWith("h")) factor = 60 * 60;
-        nap_time.remove(nap_time.length() - 1);
-        uint32_t nap_time_in_millis = nap_time.toInt() * factor * 1000;
-        mObserver->onReceivedSetNapCommand(nap_time_in_millis);
+        mObserver->onReceivedSetNapCommand(this->extractDurationInMillis(nap_time));
+    }
+    if (command.startsWith(set_snooze_cmd)) {
+        String snooze_time = extractValueFromCommand(command, set_nap_cmd);
+        mObserver->onReceivedSetSnoozeCommand(this->extractDurationInMillis(snooze_time));
     }
     if (command.startsWith(set_alarm_cmd)) {
         Serial.print("Setting Alarm for -> ");
         String new_alarm = extractValueFromCommand(command, set_alarm_cmd);
         Serial.println(new_alarm);
     }
+}
+
+uint32_t CommandParser::extractDurationInMillis(String inValue) {
+    uint32_t factor = 1;
+    if (inValue.endsWith("m")) factor = 60;
+    if (inValue.endsWith("h")) factor = 60 * 60;
+    inValue.remove(inValue.length() - 1);
+    return inValue.toInt() * factor * 1000;
 }
 
 String CommandParser::extractValueFromCommand(String received, String command) {

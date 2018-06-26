@@ -22,3 +22,7 @@ void AlarmClock::onSetDatetime(uint16_t year, uint8_t month, uint8_t day, uint8_
 void AlarmClock::onSetNapDuration(uint32_t durationInMillis) {
     alarmProcess.setNapModeWithDurationInMillis(durationInMillis);
 }
+
+void AlarmClock::onSetSnoozeDuration(uint32_t durationInMillis) {
+    alarmProcess.setSnoozeDurationInMillis(durationInMillis);
+}

@@ -13,7 +13,6 @@ void ClockProcess::_printDigit(int digit) {
 }
 
 void ClockProcess::initialize() {
-    Serial.println("Initialize ClockProcess");
     pinMode(LED_SECOND_PINOUT, OUTPUT);
     sevenSegmentsDisplay.initialize();
     rtc.begin();
@@ -26,10 +25,6 @@ void ClockProcess::_sendClockToDisplay() {
 }
 
 void ClockProcess::process() {
-    if (_debugFlag == 0) {
-        Serial.println("Starting Clock");
-        _debugFlag = 1;
-    }
     long currentMillis = millis();
 
     if (currentMillis - _previousTimeForBlink >= _computeSecondBlinkInterval()) {
