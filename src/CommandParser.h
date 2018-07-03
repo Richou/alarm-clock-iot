@@ -10,8 +10,8 @@ class CommandParser {
         static constexpr const char* DATE_TIME_PATTERN = "%d-%d-%dT%d:%d:%dZ";
         // Set DateTime pattern : set-datetime|yyyy-MM-ddThh:mm:ssZ
         String set_clock_cmd = "set-datetime|";
-        // Set Alarm pattern : set-alarm|m,t,w,t,f,s,s|hh:mm
-        // Set Alarm pattern : set-alarm|1,1,1,1,1,0,0|hh:mm
+        // Set Alarm pattern : set-alarm|s,m,t,w,t,f,s|hh:mm
+        // Set Alarm pattern : set-alarm|0,1,1,1,1,1,0|hh:mm
         String set_alarm_cmd = "set-alarm|";
         // Set Nap pattern : set-nap|20m or set-nap|1h
         String set_nap_cmd = "set-nap|";

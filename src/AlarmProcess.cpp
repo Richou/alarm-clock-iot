@@ -8,6 +8,7 @@ void AlarmProcess::setNapModeWithDurationInMillis(uint32_t durationInMillis) {
 }
 
 void AlarmProcess::setSnoozeDurationInMillis(uint32_t snoozeDurationInMillis) {
+    Serial.println(snoozeDurationInMillis);
     this->snoozeDurationInMillis = snoozeDurationInMillis; 
 }
 

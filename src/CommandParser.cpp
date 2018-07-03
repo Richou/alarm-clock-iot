@@ -18,7 +18,7 @@ void CommandParser::parseCommand(String command) {
         mObserver->onReceivedSetNapCommand(this->extractDurationInMillis(nap_time));
     }
     if (command.startsWith(set_snooze_cmd)) {
-        String snooze_time = extractValueFromCommand(command, set_nap_cmd);
+        String snooze_time = extractValueFromCommand(command, set_snooze_cmd);
         mObserver->onReceivedSetSnoozeCommand(this->extractDurationInMillis(snooze_time));
     }
     if (command.startsWith(set_alarm_cmd)) {

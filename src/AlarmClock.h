@@ -5,12 +5,14 @@
 #include "ClockProcess.h"
 #include "AlarmObserver.h"
 #include "AlarmProcess.h"
+#include "TemperatureProcess.h"
 
 class AlarmClock : public AlarmObserver {
     private:
         BluetoothManager * bluetoothManager;
         ClockProcess clockProcess;
         AlarmProcess alarmProcess;
+        TemperatureProcess temperatureProcess;
     public:
         void initialize();
         void handle_alarm_clock();

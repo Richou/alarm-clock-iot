@@ -7,12 +7,14 @@ void AlarmClock::initialize() {
     bluetoothManager->initialize();
     clockProcess.initialize();
     alarmProcess.initialize();
+    temperatureProcess.initialize();
 }
 
 void AlarmClock::handle_alarm_clock() {
     bluetoothManager->handle_bluetooth();
     clockProcess.process();
     alarmProcess.handle_alarm();
+    temperatureProcess.process();
 }
 
 void AlarmClock::onSetDatetime(uint16_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds) {
