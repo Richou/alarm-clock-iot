@@ -17,6 +17,8 @@ class CommandParser {
         String set_nap_cmd = "set-nap|";
         // Set Snooze pattern : set-snooze|10m
         String set_snooze_cmd = "set-snooze|";
+        // Set Display pattern : set-display|clock or temperature
+        String set_display_cmd = "set-display|";
         uint32_t extractDurationInMillis(String inValue);
         String extractValueFromCommand(String received, String command);
         CommandObserver* mObserver;

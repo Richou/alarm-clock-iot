@@ -26,6 +26,10 @@ void CommandParser::parseCommand(String command) {
         String new_alarm = extractValueFromCommand(command, set_alarm_cmd);
         Serial.println(new_alarm);
     }
+    if (command.startsWith(set_display_cmd)) {
+        String new_display = extractValueFromCommand(command, set_display_cmd);
+        mObserver->onReceivedSetDisplayCommand(new_display);
+    }
 }
 
 uint32_t CommandParser::extractDurationInMillis(String inValue) {

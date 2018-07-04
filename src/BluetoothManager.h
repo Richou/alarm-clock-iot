@@ -23,7 +23,8 @@ class BluetoothManager : public CommandObserver {
         void onReceivedSetDatetimeCommand(uint16_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds) override;
         void onReceivedSetNapCommand(uint32_t durationInMillis) override;
         void onReceivedSetSnoozeCommand(uint32_t durationInMillis) override;
-        void registerObserver(AlarmObserver*); 
+        void onReceivedSetDisplayCommand(String display) override;
+        void registerObserver(AlarmObserver*);
         void unregisterObserver();
 };
 

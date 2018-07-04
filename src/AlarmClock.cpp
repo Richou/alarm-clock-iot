@@ -12,9 +12,8 @@ void AlarmClock::initialize() {
 
 void AlarmClock::handle_alarm_clock() {
     bluetoothManager->handle_bluetooth();
-    clockProcess.process();
     alarmProcess.handle_alarm();
-    temperatureProcess.process();
+    (currentDisplay == AlarmDisplay::CLOCK) ? clockProcess.process() : temperatureProcess.process();
 }
 
 void AlarmClock::onSetDatetime(uint16_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds) {
@@ -27,4 +26,8 @@ void AlarmClock::onSetNapDuration(uint32_t durationInMillis) {
 
 void AlarmClock::onSetSnoozeDuration(uint32_t durationInMillis) {
     alarmProcess.setSnoozeDurationInMillis(durationInMillis);
+}
+
+void AlarmClock::onSetDisplayMode(AlarmDisplay newDisplay) {
+    this->currentDisplay = newDisplay;
 }

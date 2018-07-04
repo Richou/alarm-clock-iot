@@ -8,21 +8,21 @@ void SevenSegmentsDisplay::initialize() {
     digitalWrite(LATCH_PIN, LOW);
 }
 
-void SevenSegmentsDisplay::displayToSevenSegs(int hourminute) {
+void SevenSegmentsDisplay::displayToSevenSegs(int data) {
     short ones, tens, hundreds, thousands;
 
-    thousands = int(hourminute/1000);
+    thousands = int(data/1000);
     thousands = (thousands<<4)+1;
 
-    hundreds = int(hourminute/100);
+    hundreds = int(data/100);
     hundreds = hundreds-(int(hundreds/10)*10);
     hundreds = (hundreds<<4)+2;
 
-    tens = int(hourminute/10);
+    tens = int(data/10);
     tens = tens-(int(tens/10)*10);
     tens = (tens<<4)+4;
 
-    ones = hourminute-(int(hourminute/10)*10);
+    ones = data-(int(data/10)*10);
     ones = (ones<<4)+8;
 
     _send_data(thousands);

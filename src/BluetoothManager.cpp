@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "BluetoothManager.h"
 #include "AlarmObserver.h"
+#include "AlarmDisplay.h"
 
 BluetoothManager::~BluetoothManager() {
     commandParser->unregisterObserver();
@@ -38,6 +39,14 @@ void BluetoothManager::onReceivedSetNapCommand(uint32_t durationInMillis) {
 void BluetoothManager::onReceivedSetSnoozeCommand(uint32_t durationInMillis) {
     if (mObserver != nullptr) {
         mObserver->onSetSnoozeDuration(durationInMillis);
+    }
+}
+
+void BluetoothManager::onReceivedSetDisplayCommand(String display) {
+    if (mObserver != nullptr) {
+        AlarmDisplay commandDisplay = AlarmDisplay::CLOCK;
+        if (display == "temperature") commandDisplay = AlarmDisplay::TEMPERATURE;
+        mObserver->onSetDisplayMode(commandDisplay);
     }
 }
 
