@@ -2,40 +2,28 @@
 #include "SevenSegmentsDisplay.h"
 
 void SevenSegmentsDisplay::initialize() {
-    pinMode(LATCH_PIN, OUTPUT);
-    pinMode(DATA_PIN, OUTPUT);
-    pinMode(CLOCK_PIN, OUTPUT);
-    digitalWrite(LATCH_PIN, LOW);
+    display = new TM1637Display(CLOCK_PIN, DATA_PIN);
+    display->setBrightness(0x0f);
 }
 
-void SevenSegmentsDisplay::displayToSevenSegs(int data) {
-    short ones, tens, hundreds, thousands;
-
-    thousands = int(data/1000);
-    thousands = (thousands<<4)+1;
-
-    hundreds = int(data/100);
-    hundreds = hundreds-(int(hundreds/10)*10);
-    hundreds = (hundreds<<4)+2;
-
-    tens = int(data/10);
-    tens = tens-(int(tens/10)*10);
-    tens = (tens<<4)+4;
-
-    ones = data-(int(data/10)*10);
-    ones = (ones<<4)+8;
-
-    _send_data(thousands);
-    _send_data(hundreds);
-    _send_data(tens);
-    _send_data(ones);
-
-    digitalWrite(2, LOW);
+void SevenSegmentsDisplay::displayClock(int minutehour, bool showColon) {
+    uint8_t colon = 0b00000000;
+    if (showColon) colon = 0b01000000;
+    display->showNumberDecEx(minutehour, colon, true, 4, 0);
 }
 
-void SevenSegmentsDisplay::_send_data(short data) {
-    digitalWrite(2, LOW);
-    shiftOut(4, 3,MSBFIRST, data);
-    digitalWrite(2, HIGH);
-    delay(5);
+void SevenSegmentsDisplay::displayTemperature(int temperature) {
+    display->setSegments(this->_convertIntToSegments(temperature));
+}
+
+uint8_t* SevenSegmentsDisplay::_convertIntToSegments(int temperature) {
+    int hundreds = temperature/100;
+    int tens = (temperature%100)/10;
+    uint8_t* data = new uint8_t[4];
+
+    data[0] = display->encodeDigit(hundreds);
+    data[1] = display->encodeDigit(tens);
+    data[2] = SEG_A | SEG_F | SEG_G | SEG_B;
+    data[3] = display->encodeDigit(12);
+    return data;
 }

@@ -1,12 +1,6 @@
 #include "ClockProcess.h"
 #include <Time.h>
 
-void ClockProcess::_blinkLedSecond() {
-    digitalWrite(LED_SECOND_PINOUT, _state);
-    _state = (_state == LOW) ? HIGH : LOW;
-    // uint8_t dayOfTheWeek = rtc.now().dayOfTheWeek();
-}
-
 void ClockProcess::_printDigit(int digit) {
     if (digit < 10) Serial.print("0");
     Serial.print(digit);
@@ -21,7 +15,8 @@ void ClockProcess::initialize() {
 void ClockProcess::_sendClockToDisplay() {
     DateTime current = rtc.now();
     int hourminutes = current.hour() * 100 + current.minute();
-    sevenSegmentsDisplay.displayToSevenSegs(hourminutes);
+    secondBlink = !secondBlink;
+    sevenSegmentsDisplay.displayClock(hourminutes, secondBlink);
 }
 
 void ClockProcess::process() {
@@ -29,10 +24,8 @@ void ClockProcess::process() {
 
     if (currentMillis - _previousTimeForBlink >= _computeSecondBlinkInterval()) {
         _previousTimeForBlink = currentMillis;
-        _blinkLedSecond();
+        _sendClockToDisplay();
     }
-
-    _sendClockToDisplay();
 }
 
 long ClockProcess::_computeSecondBlinkInterval() {

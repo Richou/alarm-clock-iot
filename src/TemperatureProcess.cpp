@@ -2,6 +2,7 @@
 
 void TemperatureProcess::initialize() {
     pinMode(TEMPERATURE_SENSOR_PININ, INPUT);
+    sevenSegmentsDisplay.initialize();
 }
 
 void TemperatureProcess::process() {
@@ -14,7 +15,6 @@ void TemperatureProcess::process() {
         float voltage = (sensorValue/1024.0) * 5.0;
 
         _temperature = (voltage - 0.5) * 100;
+        sevenSegmentsDisplay.displayTemperature((int)(_temperature * 10));
     }
-
-    sevenSegmentsDisplay.displayToSevenSegs((int)(_temperature * 100));
 }

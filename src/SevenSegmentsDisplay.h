@@ -1,17 +1,18 @@
 #ifndef SEVEN_SEGMENTS_DISPLAY_H
 #define SEVEN_SEGMENTS_DISPLAY_H
+#include <TM1637Display.h>
 
-#define LATCH_PIN 2
-#define CLOCK_PIN 3
-#define DATA_PIN 4
+#define CLOCK_PIN 4
+#define DATA_PIN 3
 
 class SevenSegmentsDisplay {
     private:
-        int multiplexing_offset = 1;
-        void _send_data(short data);
+        TM1637Display *display;
+        uint8_t* _convertIntToSegments(int temperature);
     public:
         void initialize();
-        void displayToSevenSegs(int hourminute);
+        void displayClock(int hourminute, bool showColon);
+        void displayTemperature(int temperature);
 };
 
 #endif

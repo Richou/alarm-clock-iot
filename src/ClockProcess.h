@@ -13,12 +13,11 @@ class ClockProcess {
         AlarmState state = AlarmState::INIT;
         SevenSegmentsDisplay sevenSegmentsDisplay;
         RTC_DS1307 rtc;
-        int _state = HIGH;
+        bool secondBlink = false;
         bool _is_time_set = false;
         long _previousTimeForBlink = 0;
         long _blinkInterval = 500;
         long _datetimeNotSetBlink = 100;
-        void _blinkLedSecond();
         void _printDigit(int digit);
         void _sendClockToDisplay();
         long _computeSecondBlinkInterval();
