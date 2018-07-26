@@ -12,6 +12,7 @@ class CommandObserver {
         virtual void onReceivedSetNapCommand(uint32_t durationInMillis) = 0;
         virtual void onReceivedSetSnoozeCommand(uint32_t durationInMillis) = 0;
         virtual void onReceivedSetDisplayCommand(String display) = 0;
+        virtual void onReceivedSetAlarmCommand(String daysOfWeek, String hour) = 0;
 };
 
 #endif

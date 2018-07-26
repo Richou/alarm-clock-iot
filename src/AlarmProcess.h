@@ -5,6 +5,7 @@
 #include <Wire.h>
 #include "VL53L0X.h"
 #include "AlarmState.h"
+#include "Structs.h"
 
 #define ALARM_PINOUT 6
 #define ALARM_STOP_INPUT 7
@@ -25,7 +26,7 @@ class AlarmProcess {
         void handle_alarm();
         void setNapModeWithDurationInMillis(uint32_t durationInMillis);
         void setSnoozeDurationInMillis(uint32_t snoozeDurationInMillis);
-        void setAlarmClock();
+        void setAlarmClock(AlarmData alarm);
 };
 
 #endif

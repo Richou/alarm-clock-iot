@@ -7,6 +7,7 @@
 #include "AlarmProcess.h"
 #include "TemperatureProcess.h"
 #include "AlarmDisplay.h"
+#include "Structs.h"
 
 class AlarmClock : public AlarmObserver {
     private:
@@ -22,6 +23,7 @@ class AlarmClock : public AlarmObserver {
         void onSetNapDuration(uint32_t duration) override;
         void onSetSnoozeDuration(uint32_t durationInMillis) override;
         void onSetDisplayMode(AlarmDisplay newDisplay) override;
+        void onSetAlarm(AlarmData alarm) override;
 };
 
 #endif

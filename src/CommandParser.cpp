@@ -24,7 +24,7 @@ void CommandParser::parseCommand(String command) {
     if (command.startsWith(set_alarm_cmd)) {
         Serial.print("Setting Alarm for -> ");
         String new_alarm = extractValueFromCommand(command, set_alarm_cmd);
-        Serial.println(new_alarm);
+        mObserver->onReceivedSetAlarmCommand(new_alarm.substring(0, new_alarm.indexOf("|")), new_alarm.substring(new_alarm.indexOf("|") + 1));
     }
     if (command.startsWith(set_display_cmd)) {
         String new_display = extractValueFromCommand(command, set_display_cmd);

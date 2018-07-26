@@ -50,6 +50,15 @@ void BluetoothManager::onReceivedSetDisplayCommand(String display) {
     }
 }
 
+void BluetoothManager::onReceivedSetAlarmCommand(String daysOfWeek, String hour) {
+    if (mObserver != nullptr) {
+        AlarmData alarm;
+        alarm.daysOfWeek = daysOfWeek;
+        alarm.hour = hour;
+        mObserver->onSetAlarm(alarm);
+    }
+}
+
 void BluetoothManager::registerObserver(AlarmObserver* obs) {
     mObserver = obs;
 }

@@ -28,6 +28,10 @@ void AlarmClock::onSetSnoozeDuration(uint32_t durationInMillis) {
     alarmProcess.setSnoozeDurationInMillis(durationInMillis);
 }
 
+void AlarmClock::onSetAlarm(AlarmData alarm) {
+    alarmProcess.setAlarmClock(alarm);
+}
+
 void AlarmClock::onSetDisplayMode(AlarmDisplay newDisplay) {
     this->currentDisplay = newDisplay;
 }

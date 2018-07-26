@@ -12,8 +12,11 @@ void AlarmProcess::setSnoozeDurationInMillis(uint32_t snoozeDurationInMillis) {
     this->snoozeDurationInMillis = snoozeDurationInMillis; 
 }
 
-void AlarmProcess::setAlarmClock() {
-    
+void AlarmProcess::setAlarmClock(AlarmData alarm) {
+    Serial.print("DaysOfWeak : ");
+    Serial.print(alarm.daysOfWeek);
+    Serial.print(" & hour : ");
+    Serial.println(alarm.hour);
 }
 
 void AlarmProcess::initialize() {

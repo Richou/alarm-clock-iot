@@ -18,7 +18,6 @@ class ClockProcess {
         long _previousTimeForBlink = 0;
         long _blinkInterval = 500;
         long _datetimeNotSetBlink = 100;
-        void _printDigit(int digit);
         void _sendClockToDisplay();
         long _computeSecondBlinkInterval();
     public:

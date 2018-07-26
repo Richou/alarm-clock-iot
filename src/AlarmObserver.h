@@ -2,6 +2,7 @@
 #define ALARM_OBSERVER_H
 #include <Arduino.h>
 #include "AlarmDisplay.h"
+#include "Structs.h"
 
 class BluetoothManager;
 
@@ -12,6 +13,7 @@ class AlarmObserver {
         virtual void onSetNapDuration(uint32_t durationInMillis) = 0;
         virtual void onSetSnoozeDuration(uint32_t durationInMillis) = 0;
         virtual void onSetDisplayMode(AlarmDisplay newDisplay) = 0;
+        virtual void onSetAlarm(AlarmData data) = 0;
 };
 
 #endif
