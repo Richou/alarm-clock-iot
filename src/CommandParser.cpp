@@ -22,7 +22,6 @@ void CommandParser::parseCommand(String command) {
         mObserver->onReceivedSetSnoozeCommand(this->extractDurationInMillis(snooze_time));
     }
     if (command.startsWith(set_alarm_cmd)) {
-        Serial.print("Setting Alarm for -> ");
         String new_alarm = extractValueFromCommand(command, set_alarm_cmd);
         mObserver->onReceivedSetAlarmCommand(new_alarm.substring(0, new_alarm.indexOf("|")), new_alarm.substring(new_alarm.indexOf("|") + 1));
     }

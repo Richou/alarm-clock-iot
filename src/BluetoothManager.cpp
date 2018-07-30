@@ -53,10 +53,32 @@ void BluetoothManager::onReceivedSetDisplayCommand(String display) {
 void BluetoothManager::onReceivedSetAlarmCommand(String daysOfWeek, String hour) {
     if (mObserver != nullptr) {
         AlarmData alarm;
-        alarm.daysOfWeek = daysOfWeek;
-        alarm.hour = hour;
+        char hour_minute_p[hour.length()];
+        hour.toCharArray(hour_minute_p, hour.length() + 1);
+        uint16_t hour_ac, minute_ac;
+        sscanf(hour_minute_p, TIME_PATTERN, &hour_ac, &minute_ac);
+        alarm.hourToAwake = hour_ac;
+        alarm.minuteToAwake = minute_ac;
+
+        char days_of_week_p[daysOfWeek.length()];
+        daysOfWeek.toCharArray(days_of_week_p, daysOfWeek.length() + 1);
+        int sunday, monday, tuesday, wednesday, thursday, friday, saturday;
+        sscanf(days_of_week_p, DAYS_OF_WEEK_PATTERN, &sunday, &monday, &tuesday, &wednesday, &thursday, &friday, &saturday);
+        bool dayOfWeekToRing[7];
+        dayOfWeekToRing[0] = this->_fromIntToBool(sunday);
+        dayOfWeekToRing[1] = this->_fromIntToBool(monday);
+        dayOfWeekToRing[2] = this->_fromIntToBool(tuesday);
+        dayOfWeekToRing[3] = this->_fromIntToBool(wednesday);
+        dayOfWeekToRing[4] = this->_fromIntToBool(thursday);
+        dayOfWeekToRing[5] = this->_fromIntToBool(friday);
+        dayOfWeekToRing[6] = this->_fromIntToBool(saturday);
+        alarm.daysMustAwake = dayOfWeekToRing;
         mObserver->onSetAlarm(alarm);
     }
+}
+
+bool BluetoothManager::_fromIntToBool(int toConvert) {
+    return toConvert == 1;
 }
 
 void BluetoothManager::registerObserver(AlarmObserver* obs) {

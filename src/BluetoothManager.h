@@ -4,6 +4,7 @@
 #include <SoftwareSerial.h>
 #include "CommandParser.h"
 #include "CommandObserver.h"
+#include "Structs.h"
 
 #define RX_PIN 11
 #define TX_PIN 10
@@ -12,10 +13,13 @@ class AlarmObserver;
 
 class BluetoothManager : public CommandObserver {
     private:
+        static constexpr const char* TIME_PATTERN = "%d:%d";
+        static constexpr const char* DAYS_OF_WEEK_PATTERN = "%i,%i,%i,%i,%i,%i,%i";
         SoftwareSerial * softwareSerial;
         CommandParser * commandParser;
         String test = "test";
         AlarmObserver* mObserver;
+        bool _fromIntToBool(int toConvert);
     public:
         ~BluetoothManager();
         void initialize();
