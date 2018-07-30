@@ -1,7 +1,6 @@
 #include "AlarmProcess.h"
 
 void AlarmProcess::setNapModeWithDurationInMillis(uint32_t durationInMillis) {
-    Serial.println(durationInMillis);
     state = AlarmState::PROGRAM;
     _isNapSet = true;
     napDurationInMillis = durationInMillis;

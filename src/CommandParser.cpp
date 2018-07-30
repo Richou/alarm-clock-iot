@@ -2,8 +2,6 @@
 #include "CommandObserver.h"
 
 void CommandParser::parseCommand(String command) {
-    Serial.print("Recevied Command ");
-    Serial.println(command);
     if (command.startsWith(set_clock_cmd)) {
         String new_clock = extractValueFromCommand(command, set_clock_cmd);
         char new_clock_p[new_clock.length()];

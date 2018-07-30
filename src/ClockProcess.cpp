@@ -5,7 +5,6 @@ void ClockProcess::initialize() {
     pinMode(LED_SECOND_PINOUT, OUTPUT);
     sevenSegmentsDisplay.initialize();
     rtc.begin();
-    //rtc.now().dayOfTheWeek();
 }
 
 void ClockProcess::_sendClockToDisplay() {
