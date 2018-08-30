@@ -8,7 +8,7 @@
 #include "Structs.h"
 #include "RTClib.h"
 
-#define ALARM_PINOUT 6
+#define ALARM_PINOUT 5
 #define ALARM_STOP_INPUT 7
 #define HIGH_SPEED
 

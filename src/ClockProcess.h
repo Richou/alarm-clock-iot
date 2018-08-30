@@ -6,8 +6,6 @@
 #include "SevenSegmentsDisplay.h"
 #include "RTClib.h"
 
-#define LED_SECOND_PINOUT 5
-
 class ClockProcess {
     private:
         AlarmState state = AlarmState::INIT;

@@ -6,8 +6,8 @@
 #include "CommandObserver.h"
 #include "Structs.h"
 
-#define RX_PIN 11
-#define TX_PIN 10
+#define RX_PIN 9
+#define TX_PIN 8
 
 class AlarmObserver;
 
