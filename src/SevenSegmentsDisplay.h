@@ -2,8 +2,8 @@
 #define SEVEN_SEGMENTS_DISPLAY_H
 #include <TM1637Display.h>
 
-#define CLOCK_PIN 4
-#define DATA_PIN 3
+#define AC_CLOCK_PIN 4
+#define DATA_PIN_FOR_SEVEN_SEGMENTS_DISPLAY 3
 
 class SevenSegmentsDisplay {
     private:

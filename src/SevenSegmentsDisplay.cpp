@@ -2,7 +2,7 @@
 #include "SevenSegmentsDisplay.h"
 
 void SevenSegmentsDisplay::initialize() {
-    display = new TM1637Display(CLOCK_PIN, DATA_PIN);
+    display = new TM1637Display(AC_CLOCK_PIN, DATA_PIN_FOR_SEVEN_SEGMENTS_DISPLAY);
     display->setBrightness(0x0f);
 }
 

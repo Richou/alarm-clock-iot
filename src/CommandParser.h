@@ -8,6 +8,8 @@ class CommandObserver;
 class CommandParser {
     private:
         static constexpr const char* DATE_TIME_PATTERN = "%d-%d-%dT%d:%d:%dZ";
+        static constexpr const char* COLOR_PATTERN = "%d,%d,%d";
+        static constexpr const char* BRIGHTNESS_PATTERN = "%d";
         // Set DateTime pattern : set-datetime|yyyy-MM-ddThh:mm:ssZ
         String set_clock_cmd = "set-datetime|";
         // Set Alarm pattern : set-alarm|s,m,t,w,t,f,s|hh:mm
@@ -19,6 +21,10 @@ class CommandParser {
         String set_snooze_cmd = "set-snooze|";
         // Set Display pattern : set-display|clock or temperature
         String set_display_cmd = "set-display|";
+        // Set Brightness pattern : set-brightness|128
+        String set_brightness_cmd = "set-brightness|";
+        // Set Color pattern : set-color|r,g,b
+        String set_color_cmd = "set-color|";
         uint32_t extractDurationInMillis(String inValue);
         String extractValueFromCommand(String received, String command);
         CommandObserver* mObserver;

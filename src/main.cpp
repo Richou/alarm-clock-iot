@@ -1,12 +1,12 @@
 #include <Arduino.h>
-#include "AlarmClock.h"
+#include "AlarmMain.h"
 
-AlarmClock alarmClock;
+AlarmMain alarmMain;
 
 void setup() {
-    alarmClock.initialize();
+    alarmMain.initialize();
 }
 
 void loop() {
-    alarmClock.handle_alarm_clock();
+    alarmMain.handle();
 }

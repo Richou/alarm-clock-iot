@@ -3,6 +3,10 @@
 
 #include <Arduino.h>
 
+#ifndef ALARM_STOP_INPUT
+#define ALARM_STOP_INPUT 7
+#endif
+
 struct AlarmData {
     bool* daysMustAwake;
     uint8_t hourToAwake;

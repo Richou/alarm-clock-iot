@@ -11,6 +11,22 @@ void CommandParser::parseCommand(String command) {
         sscanf(new_clock_p, DATE_TIME_PATTERN, &year_ac, &month_ac, &day_ac, &hours_ac, &minutes_ac, &seconds_ac);
         mObserver->onReceivedSetDatetimeCommand(year_ac, month_ac, day_ac, hours_ac, minutes_ac, seconds_ac);
     }
+    if (command.startsWith(set_color_cmd)) {
+        String rgb = extractValueFromCommand(command, set_color_cmd);
+        char rgb_p[rgb.length()];
+        rgb.toCharArray(rgb_p, rgb.length());
+        uint8_t red, green, blue;
+        sscanf(rgb_p, COLOR_PATTERN, &red, &green, &blue);
+        mObserver->onReceivedSetColorCommand(red, green, blue);
+    }
+    if (command.startsWith(set_brightness_cmd)) {
+        String brightness = extractValueFromCommand(command, set_brightness_cmd);
+        char brightness_p[brightness.length()];
+        brightness.toCharArray(brightness_p, brightness.length());
+        uint8_t brightness_ac;
+        sscanf(brightness_p, BRIGHTNESS_PATTERN, &brightness_ac);
+        mObserver->onReceivedSetBrightnessCommand(brightness_ac);
+    }
     if (command.startsWith(set_nap_cmd)) {
         String nap_time = extractValueFromCommand(command, set_nap_cmd);
         mObserver->onReceivedSetNapCommand(this->extractDurationInMillis(nap_time));

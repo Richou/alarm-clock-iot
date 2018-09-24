@@ -25,10 +25,12 @@ class BluetoothManager : public CommandObserver {
         void initialize();
         void handle_bluetooth();
         void onReceivedSetDatetimeCommand(uint16_t year, uint8_t month, uint8_t day, uint8_t hours, uint8_t minutes, uint8_t seconds) override;
+        void onReceivedSetColorCommand(uint8_t red, uint8_t green, uint8_t blue) override;
         void onReceivedSetNapCommand(uint32_t durationInMillis) override;
         void onReceivedSetSnoozeCommand(uint32_t durationInMillis) override;
         void onReceivedSetDisplayCommand(String display) override;
         void onReceivedSetAlarmCommand(String daysOfWeek, String hour) override;
+        void onReceivedSetBrightnessCommand(uint8_t brightness) override;
         void registerObserver(AlarmObserver*);
         void unregisterObserver();
 };

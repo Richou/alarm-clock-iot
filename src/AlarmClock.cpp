@@ -20,6 +20,14 @@ void AlarmClock::onSetDatetime(uint16_t year, uint8_t month, uint8_t day, uint8_
     clockProcess.setDateTime(year, month, day, hours, minutes, seconds);
 }
 
+void AlarmClock::onSetColor(uint8_t red, uint8_t green, uint8_t blue) {
+    ledDisplay.setColor(red, green, blue);
+}
+
+void AlarmClock::onSetBrightness(uint8_t brightness) {
+    ledDisplay.setBrightness(brightness);
+}
+
 void AlarmClock::onSetNapDuration(uint32_t durationInMillis) {
     alarmProcess.setNapModeWithDurationInMillis(durationInMillis);
 }

@@ -1,23 +1,5 @@
 #include "AlarmProcess.h"
 
-void AlarmProcess::setNapModeWithDurationInMillis(uint32_t durationInMillis) {
-    state = AlarmState::PROGRAM;
-    _isNapSet = true;
-    napDurationInMillis = durationInMillis;
-    currentTimeAtNapSet = millis();
-}
-
-void AlarmProcess::setSnoozeDurationInMillis(uint32_t snoozeDurationInMillis) {
-    Serial.println(snoozeDurationInMillis);
-    this->snoozeDurationInMillis = snoozeDurationInMillis; 
-}
-
-void AlarmProcess::setAlarmClock(AlarmData alarm) {
-    alarmData = alarm;
-    state = AlarmState::PROGRAM;
-    _isAlarmSet = true;
-}
-
 void AlarmProcess::initialize() {
     pinMode(ALARM_PINOUT, OUTPUT);
     pinMode(ALARM_STOP_INPUT, INPUT);
@@ -54,6 +36,24 @@ void AlarmProcess::handle_alarm() {
         _isNapSet = false;
         digitalWrite(ALARM_PINOUT, LOW);
     }
+}
+
+void AlarmProcess::setNapModeWithDurationInMillis(uint32_t durationInMillis) {
+    state = AlarmState::PROGRAM;
+    _isNapSet = true;
+    napDurationInMillis = durationInMillis;
+    currentTimeAtNapSet = millis();
+}
+
+void AlarmProcess::setSnoozeDurationInMillis(uint32_t snoozeDurationInMillis) {
+    Serial.println(snoozeDurationInMillis);
+    this->snoozeDurationInMillis = snoozeDurationInMillis; 
+}
+
+void AlarmProcess::setAlarmClock(AlarmData alarm) {
+    alarmData = alarm;
+    state = AlarmState::PROGRAM;
+    _isAlarmSet = true;
 }
 
 bool AlarmProcess::_alarmTimeHasArrived() {

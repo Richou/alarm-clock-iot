@@ -30,6 +30,18 @@ void BluetoothManager::onReceivedSetDatetimeCommand(uint16_t year, uint8_t month
     }
 }
 
+void BluetoothManager::onReceivedSetColorCommand(uint8_t red, uint8_t green, uint8_t blue) {
+    if (mObserver != nullptr) {
+        mObserver->onSetColor(red, green, blue);
+    }
+}
+
+void BluetoothManager::onReceivedSetBrightnessCommand(uint8_t brightness) {
+    if (mObserver != nullptr) {
+        mObserver->onSetBrightness(brightness);
+    }
+}
+
 void BluetoothManager::onReceivedSetNapCommand(uint32_t durationInMillis) {
     if (mObserver != nullptr) {
         mObserver->onSetNapDuration(durationInMillis);

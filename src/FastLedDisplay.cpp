@@ -2,7 +2,7 @@
 
 void FastLedDisplay::initialize() {
     FastLED.delay(1000);
-    FastLED.addLeds<WS2812B, DATA_PINOUT, RGB>(LEDs, NUM_LEDS);
+    FastLED.addLeds<WS2812B, AC_DATA_PINOUT, RGB>(_LEDs, AC_NUM_LEDS);
 }
 
 void FastLedDisplay::displayClock(int hourminute, bool showColon) {
@@ -38,6 +38,14 @@ void FastLedDisplay::displayTemperature(int temperature) {
     FastLED.show();
 }
 
+void FastLedDisplay::setBrightness(uint8_t brightness) {
+    FastLED.setBrightness(brightness);
+}
+
+void FastLedDisplay::setColor(uint8_t red, uint8_t green, uint8_t blue) {
+    _currentColor = CRGB(red, green, blue);
+}
+
 void FastLedDisplay::_displaySegments(int startindex, int number) {
 
   byte numbers[] = {
@@ -59,11 +67,11 @@ void FastLedDisplay::_displaySegments(int startindex, int number) {
   };
 
   for (int i = 0; i < 7; i++) {
-    LEDs[i + startindex] = ((numbers[number] & 1 << i) == 1 << i) ? CRGB::White : colorOFF;
+    _LEDs[i + startindex] = ((numbers[number] & 1 << i) == 1 << i) ? _currentColor : _colorOFF;
   } 
 }
 
 void FastLedDisplay::_displayDots(bool showColon) {
-    LEDs[14] = (showColon) ? CRGB::White : colorOFF;
-    LEDs[15] = (showColon) ? CRGB::White : colorOFF;
+    _LEDs[14] = (showColon) ? _currentColor : _colorOFF;
+    _LEDs[15] = (showColon) ? _currentColor : _colorOFF;
 }

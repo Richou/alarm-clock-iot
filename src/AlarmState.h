@@ -2,6 +2,8 @@
 #define ALARM_STATE_H
 
 enum class AlarmState {
+    SETUP,
+    WORKING,
     INIT,
     OFF,
     PROGRAM,
