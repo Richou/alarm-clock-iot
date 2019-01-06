@@ -12,9 +12,9 @@ class AlarmMain {
         AlarmSetup alarmSetup;
         AlarmState mainState = AlarmState::WORKING;
         long _buttonTimer = 0;
-        uint32_t _longPressTime = 250;
+        uint32_t _longPressTime = 2000;
         boolean _buttonActive = false;
-        boolean _longPressActive = false;
+        boolean _justChangedMode = false;
         bool _longPressOffsetReached();
     public:
         void initialize();

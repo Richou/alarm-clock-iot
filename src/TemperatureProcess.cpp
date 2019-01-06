@@ -12,7 +12,7 @@ void TemperatureProcess::process() {
         _previous_refresh_interval_ms = currentMillis;
         int sensorValue = analogRead(TEMPERATURE_SENSOR_PININ);
 
-        float voltage = (sensorValue/1024.0) * 5.0;
+        float voltage = (sensorValue * 5.0) / 1024.0;
 
         _temperature = (voltage - 0.5) * 100;
         sevenSegmentsDisplay.displayTemperature((int)(_temperature * 10));
